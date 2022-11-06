@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+
+<section class="py-5">
+    @if (session('message'))
+    <h6 class="alert alert-warning mb-3"> {{ session('message') }} </h6>
+@endif
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -70,4 +76,6 @@
         </div>
     </div>
 </div>
+</section>
+
 @endsection

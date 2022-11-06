@@ -10,9 +10,10 @@ use Illuminate\Http\Request;
 class FrontendController extends Controller
 {
     public function index() {
+        $setting = Setting::find(1);
         $categories = Category::where('status', '0')->get();
         $latest_posts = Post::where('status', '0')->orderBy('created_by', 'DESC')->get()->take(15);
-        return view('frontend.index', compact('categories', 'latest_posts'));
+        return view('frontend.index', compact('categories', 'latest_posts', 'setting'));
     }
 
     public function viewCategoryPost($category_slug) {

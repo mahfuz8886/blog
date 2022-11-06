@@ -12,6 +12,13 @@
     <meta name="meta_keyword" content="@yield('meta_keyword')">
     <meta name="author" content="@yield('Mahfuz')">
 
+    @php
+        $setting = App\Models\Setting::find(1);
+    @endphp
+    @if ($setting)
+    <link rel="shortcut icon" href="{{ asset('public/assets/upload/setting/'.$setting->favicon) }}" type="image/x-icon">
+    @endif
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -109,7 +116,7 @@
             dots:false,
             responsive:{
                 0:{
-                    items:1
+                    items:2
                 },
                 600:{
                     items:3
@@ -120,5 +127,6 @@
             }
         })
     </script>
+    @yield('scripts')
 </body>
 </html>

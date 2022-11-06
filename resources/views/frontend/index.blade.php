@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
 @section('title')
-    Home
+    {{ $setting->meta_title }}
 @endsection
 @section('meta_description')
+{{ $setting->meta_description }}
 @endsection
 @section('meta_keyword')
+{{ $setting->meta_keyword }}
 @endsection
 
 @section('content')
@@ -14,7 +16,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="owl-carousel ow-theme category-carousel">
+                    <div class="owl-carousel category-carousel owl-theme">
 
                         @foreach ($categories as $category)
                             <a href="{{ URL('tutorial/' . $category->slug) }}" class="text-decoration-none">

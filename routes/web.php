@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\FrontendController;
 
 /*
@@ -31,6 +33,14 @@ Route::get('/', [FrontendController::class, 'index']);
 Route::get('/tutorial/{category_slug}', [FrontendController::class, 'viewCategoryPost']);
 Route::get('/tutorial/{category_slug}/{post_slug}', [FrontendController::class, 'viewPost']);
 
+/*
+    |--------------------------------------------------------------------------
+    | Comment System
+    |--------------------------------------------------------------------------
+*/
+Route::post('comments', [CommentController::class, 'store']);
+Route::post('delete-comment', [CommentController::class, 'destroy']);   
+
 
 // Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function() {
 
@@ -54,7 +64,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('add-category', [CategoryController::class, 'store']);
     Route::get('edit-category/{category_id}', [CategoryController::class, 'edit']);
     Route::put('update-category/{category_id}', [CategoryController::class, 'update']);
-    Route::get('delete-category/{category_id}', [CategoryController::class, 'destroy']);
+    Route::post('delete-category', [CategoryController::class, 'destroy']);
     /*
     |--------------------------------------------------------------------------
     | Post CRUD
@@ -70,4 +80,14 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('users', [UserController::class, 'index']);
     Route::get('edit-user/{user_id}', [UserController::class, 'edit']);
     Route::put('edit-user/{user_id}', [UserController::class, 'update']);
+
+
+    /*
+        |--------------------------------------------------------------------------
+        | Setting
+        |--------------------------------------------------------------------------
+    */
+    Route::get('settings', [SettingController::class, 'index']);
+    //Route::get('add-post', [PostController::class, 'create']);
+    Route::post('settings', [SettingController::class, 'store']);
 });

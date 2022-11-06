@@ -49,3 +49,8 @@
 .bg-gray {
      background-color: #ddd;
 }
+
+.post-description {
+     overflow-y: scroll;
+     scrollbar-width: none;
+ }
